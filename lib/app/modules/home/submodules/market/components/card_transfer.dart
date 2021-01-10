@@ -124,7 +124,7 @@ class CardTransfer extends StatelessWidget {
                 ],
               ),
             ),
-            Text('Neymar Junior'),
+            Text('Barcelona iniciou conversa com Neymar Junior.'),
             Divider(
               color: Colors.black,
             ),
