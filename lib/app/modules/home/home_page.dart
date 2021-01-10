@@ -1,3 +1,4 @@
+import 'package:cadu_fifa/app/modules/home/components/option_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'home_controller.dart';
@@ -35,11 +36,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             onPressed: () {},
             color: Colors.black54,
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {},
-            color: Colors.black54,
-          ),
+          OptionMenu(),
         ],
       ),
       body: PageView(
