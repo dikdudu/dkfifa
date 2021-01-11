@@ -1,5 +1,6 @@
+import 'package:cadu_fifa/app/modules/home/submodules/player/components/date_form.dart';
+import 'package:cadu_fifa/app/modules/home/submodules/player/components/drop_form.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class RegisterPlayerPage extends StatefulWidget {
   // final _formKey = GlobalKey<FormState>();
@@ -11,24 +12,6 @@ class RegisterPlayerPage extends StatefulWidget {
 class _RegisterPlayerPageState extends State<RegisterPlayerPage> {
   @override
   Widget build(BuildContext context) {
-    DateTime _selectedDate;
-
-    _showDatePicker() {
-      showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2019),
-        lastDate: DateTime.now(),
-      ).then((pickedDate) {
-        if (pickedDate == null) {
-          return;
-        }
-        setState(() {
-          _selectedDate = pickedDate;
-        });
-      });
-    }
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -58,24 +41,8 @@ class _RegisterPlayerPageState extends State<RegisterPlayerPage> {
               validator: (t) {},
             ),
             SizedBox(height: 40),
-            Row(
-              children: [
-                Text(
-                  _selectedDate == null
-                      ? 'Nenhuma dada Seleciona!'
-                      : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}',
-                ),
-                SizedBox(width: 10),
-                FlatButton(
-                  textColor: Theme.of(context).primaryColor,
-                  child: Text(
-                    'Seleciona Data',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: _showDatePicker,
-                ),
-              ],
-            )
+            DropForm(),
+            DateForm(),
           ],
         ),
       ),

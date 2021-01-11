@@ -2,7 +2,7 @@ import 'home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'home_page.dart';
-import 'pages/register_player_page.dart';
+import 'submodules/player/pages/register_player_page.dart';
 
 class HomeModule extends ChildModule {
   @override
