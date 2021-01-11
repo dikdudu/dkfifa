@@ -9,7 +9,8 @@ class AppWidget extends StatelessWidget {
       navigatorKey: Modular.navigatorKey,
       title: 'CADU FIFA',
       theme: ThemeData(
-        primaryColor: Colors.white,
+        primaryColor: Colors.purpleAccent[400],
+        accentColor: Colors.cyan[600],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',

@@ -25,7 +25,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         title: Text(
           widget.title,
           style: TextStyle(
-            color: Colors.black54,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -34,7 +33,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           IconButton(
             icon: Icon(Icons.notifications),
             onPressed: () {},
-            color: Colors.black54,
           ),
           OptionMenu(),
         ],
@@ -52,7 +50,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         builder: (context, snapshot) {
           return BottomNavigationBar(
               currentIndex: controller.pageViewController?.page?.round() ?? 1,
-              selectedItemColor: Colors.black,
               onTap: (index) {
                 controller.pageViewController.jumpToPage(index);
               },
