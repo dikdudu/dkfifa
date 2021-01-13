@@ -3,4 +3,6 @@ part 'auth_controller.g.dart';
 
 class AuthController = _AuthControllerBase with _$AuthController;
 
-abstract class _AuthControllerBase with Store {}
+abstract class _AuthControllerBase with Store {
+  // final IAuthRepository _authRepository = Modular.get();
+}

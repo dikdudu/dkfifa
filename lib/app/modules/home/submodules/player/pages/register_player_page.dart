@@ -31,14 +31,14 @@ class _RegisterPlayerPageState extends State<RegisterPlayerPage> {
                 labelText: "Nome do jogador",
               ),
               onSaved: (t) {},
-              validator: (t) {},
+              // validator: (t) {},
             ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: "URL da imagem",
               ),
               onSaved: (t) {},
-              validator: (t) {},
+              // validator: (t) {},
             ),
             SizedBox(height: 40),
             DropForm(),

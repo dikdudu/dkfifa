@@ -1,7 +1,5 @@
+import 'package:cadu_fifa/app/modules/login/models/user_model.dart';
+
 abstract class IAuthRepository {
-  Future getUser();
-  Future getGoogleLogin();
-  Future getFacebookLogin();
-  Future getEmailPasswordLogin();
-  Future<String> getToken();
+  Future<void> singIn(UserModel user, Function onFail, Function onSucess);
 }
