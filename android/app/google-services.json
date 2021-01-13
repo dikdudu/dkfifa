@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "822220341487-4t0npm7vf69uvcflr9umopkfc1sposv0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.eduardo.cadu_fifa",
+            "certificate_hash": "984dafd9a37102940b7b34bff9ad3a501cb5323a"
+          }
+        },
+        {
           "client_id": "822220341487-1bv6edn4q2tqbrd265chdk9og8ksaoqr.apps.googleusercontent.com",
           "client_type": 3
         }

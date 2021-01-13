@@ -1,3 +1,4 @@
+import 'package:cadu_fifa/app/modules/login/login_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:cadu_fifa/app/app_widget.dart';
@@ -9,7 +10,7 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, module: HomeModule()),
+        ModularRouter(Modular.initialRoute, module: LoginModule()),
       ];
 
   @override

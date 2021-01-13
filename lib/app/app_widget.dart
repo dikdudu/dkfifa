@@ -10,7 +10,10 @@ class AppWidget extends StatelessWidget {
       title: 'CADU FIFA',
       theme: ThemeData(
         primaryColor: Colors.purpleAccent[400],
-        accentColor: Colors.cyan[600],
+        scaffoldBackgroundColor: Colors.grey[50],
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
