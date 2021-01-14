@@ -19,39 +19,71 @@ final $TeamController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TeamController on _TeamControllerBase, Store {
-  final _$valueAtom = Atom(name: '_TeamControllerBase.value');
+  final _$userAtom = Atom(name: '_TeamControllerBase.user');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  UserModel get user {
+    _$userAtom.reportRead();
+    return super.user;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set user(UserModel value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
     });
   }
 
-  final _$_TeamControllerBaseActionController =
-      ActionController(name: '_TeamControllerBase');
+  final _$teamAtom = Atom(name: '_TeamControllerBase.team');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_TeamControllerBaseActionController.startAction(
-        name: '_TeamControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_TeamControllerBaseActionController.endAction(_$actionInfo);
-    }
+  TeamModel get team {
+    _$teamAtom.reportRead();
+    return super.team;
+  }
+
+  @override
+  set team(TeamModel value) {
+    _$teamAtom.reportWrite(value, super.team, () {
+      super.team = value;
+    });
+  }
+
+  final _$isLoadingAtom = Atom(name: '_TeamControllerBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
+  final _$getUserAsyncAction = AsyncAction('_TeamControllerBase.getUser');
+
+  @override
+  Future<dynamic> getUser() {
+    return _$getUserAsyncAction.run(() => super.getUser());
+  }
+
+  final _$getTeamAsyncAction = AsyncAction('_TeamControllerBase.getTeam');
+
+  @override
+  Future<dynamic> getTeam(dynamic teamUser) {
+    return _$getTeamAsyncAction.run(() => super.getTeam(teamUser));
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+user: ${user},
+team: ${team},
+isLoading: ${isLoading}
     ''';
   }
 }

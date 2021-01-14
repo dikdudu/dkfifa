@@ -46,11 +46,11 @@ mixin _$LoginController on _LoginControllerBase, Store {
       ActionController(name: '_LoginControllerBase');
 
   @override
-  void setLoading(bool value) {
+  void setLoading() {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
         name: '_LoginControllerBase.setLoading');
     try {
-      return super.setLoading(value);
+      return super.setLoading();
     } finally {
       _$_LoginControllerBaseActionController.endAction(_$actionInfo);
     }

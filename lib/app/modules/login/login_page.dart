@@ -95,7 +95,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                         ),
                                       );
                                     },
-                                    onSucess: () {},
+                                    onSucess: () {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed('/home');
+                                    },
                                   );
                                 }
                               },

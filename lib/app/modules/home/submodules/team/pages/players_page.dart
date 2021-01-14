@@ -121,7 +121,7 @@ class PlayerPage extends StatelessWidget {
                       );
                     },
                     separatorBuilder: (context, index) => Divider(height: 40),
-                    itemCount: 10,
+                    itemCount: 2,
                     shrinkWrap: true,
                     controller: ScrollController(keepScrollOffset: false),
                   ),

@@ -17,13 +17,11 @@ abstract class _LoginControllerBase with Store {
 
   @action
   Future signIn({UserModel user, Function onFail, Function onSucess}) async {
-    setLoading(true);
+    setLoading();
     await _authRepository.singIn(user, onFail, onSucess);
-    setLoading(false);
+    setLoading();
   }
 
   @action
-  void setLoading(bool value) {
-    loading = value;
-  }
+  void setLoading() => loading = !loading;
 }
