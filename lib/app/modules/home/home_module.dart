@@ -3,11 +3,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'home_page.dart';
 import 'submodules/player/pages/register_player_page.dart';
+import 'submodules/team/repositories/team_repository.dart';
 
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
         $HomeController,
+        Bind((i) => TeamRepository()),
       ];
 
   @override

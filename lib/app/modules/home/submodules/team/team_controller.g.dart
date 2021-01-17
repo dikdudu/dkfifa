@@ -64,6 +64,21 @@ mixin _$TeamController on _TeamControllerBase, Store {
     });
   }
 
+  final _$playersAtom = Atom(name: '_TeamControllerBase.players');
+
+  @override
+  List<PlayerModel> get players {
+    _$playersAtom.reportRead();
+    return super.players;
+  }
+
+  @override
+  set players(List<PlayerModel> value) {
+    _$playersAtom.reportWrite(value, super.players, () {
+      super.players = value;
+    });
+  }
+
   final _$getUserAsyncAction = AsyncAction('_TeamControllerBase.getUser');
 
   @override
@@ -78,12 +93,20 @@ mixin _$TeamController on _TeamControllerBase, Store {
     return _$getTeamAsyncAction.run(() => super.getTeam(teamUser));
   }
 
+  final _$getPlayersAsyncAction = AsyncAction('_TeamControllerBase.getPlayers');
+
+  @override
+  Future<dynamic> getPlayers() {
+    return _$getPlayersAsyncAction.run(() => super.getPlayers());
+  }
+
   @override
   String toString() {
     return '''
 user: ${user},
 team: ${team},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+players: ${players}
     ''';
   }
 }

@@ -1,6 +1,22 @@
+import 'package:cadu_fifa/app/modules/home/submodules/team/team_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-class PlayerPage extends StatelessWidget {
+class PlayerPage extends StatefulWidget {
+  @override
+  _PlayerPageState createState() => _PlayerPageState();
+}
+
+class _PlayerPageState extends State<PlayerPage> {
+  TeamController controller = TeamController();
+
+  @override
+  void initState() {
+    controller.getPlayers();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,61 +86,68 @@ class PlayerPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 40),
-                  ListView.separated(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          ClipOval(
-                            child: Image.network(
-                              'https://cdn.futbin.com/content/fifa21/img/players/190871.png?v=22',
-                              fit: BoxFit.contain,
-                              height: 55,
-                              width: 55,
-                            ),
-                          ),
-                          SizedBox(width: 32),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Neymar Junior',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w900,
-                                    letterSpacing: 0.5,
+                  Observer(builder: (context) {
+                    return controller.players == null
+                        ? Center(child: CircularProgressIndicator())
+                        : ListView.separated(
+                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            itemBuilder: (context, index) {
+                              return Row(
+                                children: [
+                                  ClipOval(
+                                    child: Image.network(
+                                      controller.players[index].image,
+                                      fit: BoxFit.contain,
+                                      height: 55,
+                                      width: 55,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  'Neymar',
-                                  style: TextStyle(
-                                    color: Colors.grey[900],
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 22,
-                                    letterSpacing: 0.5,
+                                  SizedBox(width: 32),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          controller.players[index].name,
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.w900,
+                                            letterSpacing: 0.5,
+                                          ),
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          controller.players[index].name,
+                                          style: TextStyle(
+                                            color: Colors.grey[900],
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 22,
+                                            letterSpacing: 0.5,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            'PE',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: 0.5,
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                    separatorBuilder: (context, index) => Divider(height: 40),
-                    itemCount: 2,
-                    shrinkWrap: true,
-                    controller: ScrollController(keepScrollOffset: false),
-                  ),
+                                  Text(
+                                    controller.players[index].over.toString(),
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w900,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  )
+                                ],
+                              );
+                            },
+                            separatorBuilder: (context, index) =>
+                                Divider(height: 40),
+                            itemCount: controller.players.length,
+                            shrinkWrap: true,
+                            controller:
+                                ScrollController(keepScrollOffset: false),
+                          );
+                  }),
                 ],
               ),
             ),

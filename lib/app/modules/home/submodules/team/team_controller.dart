@@ -1,6 +1,8 @@
 import 'package:cadu_fifa/app/modules/home/submodules/team/repositories/team_repository.dart';
 import 'package:cadu_fifa/app/modules/login/models/user_model.dart';
 import 'package:cadu_fifa/app/shared/auth/repositories/auth_repository_interface.dart';
+import 'package:cadu_fifa/app/shared/players/models/player_model.dart';
+import 'package:cadu_fifa/app/shared/players/player_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -13,7 +15,8 @@ class TeamController = _TeamControllerBase with _$TeamController;
 
 abstract class _TeamControllerBase with Store {
   final IAuthRepository _authRepository = Modular.get();
-  final TeamRepository _teamRepository = TeamRepository();
+  final TeamRepository _teamRepository = Modular.get();
+  final PlayerRepository _playerRepository = Modular.get();
 
   _TeamControllerBase() {
     autorun((_) {
@@ -41,6 +44,21 @@ abstract class _TeamControllerBase with Store {
   @action
   Future getTeam(teamUser) async {
     team = await _teamRepository.catchTeam(teamUser);
-    print(team.patrimonio);
+  }
+
+  //pegar jogadores
+  @observable
+  List<PlayerModel> players;
+
+  @action
+  Future getPlayers() async {
+    players = await _playerRepository.catchAllPlayers();
+    imprimirJogador();
+  }
+
+  imprimirJogador() {
+    for (var player in players) {
+      print(player.name);
+    }
   }
 }
