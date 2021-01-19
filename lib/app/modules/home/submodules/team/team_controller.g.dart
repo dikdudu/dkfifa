@@ -93,11 +93,13 @@ mixin _$TeamController on _TeamControllerBase, Store {
     return _$getTeamAsyncAction.run(() => super.getTeam(teamUser));
   }
 
-  final _$getPlayersAsyncAction = AsyncAction('_TeamControllerBase.getPlayers');
+  final _$getPlayersTeamAsyncAction =
+      AsyncAction('_TeamControllerBase.getPlayersTeam');
 
   @override
-  Future<dynamic> getPlayers() {
-    return _$getPlayersAsyncAction.run(() => super.getPlayers());
+  Future<dynamic> getPlayersTeam(dynamic userTeam) {
+    return _$getPlayersTeamAsyncAction
+        .run(() => super.getPlayersTeam(userTeam));
   }
 
   @override

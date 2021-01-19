@@ -23,7 +23,7 @@ class OptionMenu extends StatelessWidget {
 void choiceAction(String choice) {
   switch (choice) {
     case 'Novo Jogador':
-      Modular.to.pushNamed('/cadastro/jogador');
+      Modular.to.pushNamed('home/playerRegister');
       break;
     case 'Sair':
       //  Navigator.of(context).pushNamed('/players')

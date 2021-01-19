@@ -8,6 +8,8 @@ class DropForm extends StatefulWidget {
 class _DropFormState extends State<DropForm> {
   String dropdownValue = 'PE';
 
+  // final RegisterPlayerController controller = Modular.get();
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,6 +27,7 @@ class _DropFormState extends State<DropForm> {
           onChanged: (String newValue) {
             setState(() {
               dropdownValue = newValue;
+              print(dropdownValue);
             });
           },
           items: <String>[

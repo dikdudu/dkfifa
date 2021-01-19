@@ -22,7 +22,7 @@ class _DateFormState extends State<DateForm> {
       setState(() {
         _selectedDate = pickedDate;
       });
-      print(_selectedDate);
+      print(DateFormat('dd/MM/y').format(_selectedDate));
     });
   }
 

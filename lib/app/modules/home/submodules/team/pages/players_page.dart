@@ -1,6 +1,7 @@
 import 'package:cadu_fifa/app/modules/home/submodules/team/team_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class PlayerPage extends StatefulWidget {
   @override
@@ -8,11 +9,11 @@ class PlayerPage extends StatefulWidget {
 }
 
 class _PlayerPageState extends State<PlayerPage> {
-  TeamController controller = TeamController();
+  TeamController controller = Modular.get();
 
   @override
-  void initState() {
-    controller.getPlayers();
+  initState() {
+    controller.getPlayersTeam(controller.user.team);
     // TODO: implement initState
     super.initState();
   }
@@ -39,7 +40,7 @@ class _PlayerPageState extends State<PlayerPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'ELENCO',
+                              'ELECO',
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.w900,
@@ -87,7 +88,7 @@ class _PlayerPageState extends State<PlayerPage> {
                   ),
                   SizedBox(height: 40),
                   Observer(builder: (context) {
-                    return controller.players == null
+                    return controller.players.isEmpty
                         ? Center(child: CircularProgressIndicator())
                         : ListView.separated(
                             padding: EdgeInsets.symmetric(horizontal: 32),

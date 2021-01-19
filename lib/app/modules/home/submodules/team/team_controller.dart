@@ -48,17 +48,10 @@ abstract class _TeamControllerBase with Store {
 
   //pegar jogadores
   @observable
-  List<PlayerModel> players;
+  List<PlayerModel> players = [];
 
   @action
-  Future getPlayers() async {
-    players = await _playerRepository.catchAllPlayers();
-    imprimirJogador();
-  }
-
-  imprimirJogador() {
-    for (var player in players) {
-      print(player.name);
-    }
+  Future getPlayersTeam(userTeam) async {
+    players = await _playerRepository.catchPlayersTeam(userTeam);
   }
 }
