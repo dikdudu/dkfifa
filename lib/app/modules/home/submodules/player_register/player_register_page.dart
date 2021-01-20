@@ -25,7 +25,6 @@ class _PlayerRegisterPageState
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        elevation: 0,
         centerTitle: true,
         title: Text('Novo Jogador'),
         actions: [
@@ -34,6 +33,7 @@ class _PlayerRegisterPageState
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
+                  savePlayeer();
                 }
               }),
         ],
@@ -47,30 +47,16 @@ class _PlayerRegisterPageState
               decoration: InputDecoration(
                 labelText: "Nome do jogador",
               ),
-              onSaved: (i) {},
-              validator: (name) {
-                if (name.isEmpty) {
-                  return 'Campo Obrigatorio';
-                } else if (name.trim().split(' ').length <= 1) {
-                  return 'Preencha o nome completo';
-                } else {
-                  return null;
-                }
-              },
+              onSaved: controller.changePlayerName,
+              validator: controller.validateName,
               // validator: (t) {},
             ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: "URL da imagem",
               ),
-              onSaved: (i) {},
-              validator: (url) {
-                if (url.isEmpty) {
-                  return 'Campo Obrigatorio';
-                } else {
-                  return null;
-                }
-              },
+              onSaved: controller.changePlayerImage,
+              validator: controller.validateImage,
               // validator: (t) {},
             ),
             SizedBox(height: 10),
@@ -79,18 +65,13 @@ class _PlayerRegisterPageState
               decoration: InputDecoration(
                 labelText: "Over",
               ),
-              onSaved: (i) {},
-              validator: (over) {
-                if (over.isEmpty) {
-                  return 'Campo Obrigatorio';
-                } else {
-                  return null;
-                }
-              },
+              onSaved: controller.changePlayerOver,
+              validator: controller.validateOver,
               // validator: (t) {},
             ),
             SizedBox(height: 10),
             DropForm(),
+            SizedBox(height: 20),
             DateForm(),
           ],
         ),
@@ -99,12 +80,30 @@ class _PlayerRegisterPageState
   }
 
   void savePlayeer() async {
-    _scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        content:
-            Text('Salvando Jogador...', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.green,
-      ),
-    );
+    if (controller.position == null || controller.position == null) {
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text('Preencha todos os dados',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+    } else {
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text('Salvando Jogador...',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.grey,
+        ),
+      );
+      await controller.savePlayer();
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text('Jogador Salvo com Sucesso!',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.green,
+        ),
+      );
+    }
   }
 }

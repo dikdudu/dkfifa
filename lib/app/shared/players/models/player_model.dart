@@ -6,6 +6,8 @@ class PlayerModel {
   int over;
   String team;
   String image;
+  String position;
+  String datenasc;
 
   PlayerModel({this.id, this.name, this.over, this.team, this.image});
 
@@ -15,5 +17,7 @@ class PlayerModel {
     over = document.data()['over'];
     team = document.data()['team'];
     image = document.data()['image'];
+    position = document.data()['position'];
+    datenasc = document.data()['datenasc'];
   }
 }

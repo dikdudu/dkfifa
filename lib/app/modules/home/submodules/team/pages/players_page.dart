@@ -14,7 +14,7 @@ class _PlayerPageState extends State<PlayerPage> {
   @override
   initState() {
     controller.getPlayersTeam(controller.user.team);
-    // TODO: implement initState
+
     super.initState();
   }
 
