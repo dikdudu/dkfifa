@@ -1,3 +1,4 @@
+import 'package:cadu_fifa/app/modules/home/submodules/market/components/search_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'components/card_transfer.dart';
@@ -23,11 +24,27 @@ class _MarketPageState extends ModularState<MarketPage, MarketController> {
           children: [
             Center(
               child: Container(
-                child: CardTransfer(),
+                child: Column(
+                  children: [
+                    Text('Disputas do Momento'),
+                    CardTransfer(),
+                  ],
+                ),
               ),
             )
           ],
         ),
+      ),
+      floatingActionButton: RaisedButton(
+        color: Colors.blue,
+        child: Text(
+          'Buscar Jogador',
+          style: TextStyle(color: Colors.white),
+        ),
+        onPressed: () {
+          showDialog(context: context, builder: (_) => SearchDialog());
+          controller.filteredPlayers;
+        },
       ),
     );
   }

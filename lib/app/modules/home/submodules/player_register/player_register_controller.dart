@@ -1,5 +1,4 @@
 import 'package:cadu_fifa/app/modules/home/submodules/player_register/repositories/player_register_repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

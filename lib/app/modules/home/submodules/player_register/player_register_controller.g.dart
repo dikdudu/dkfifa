@@ -94,6 +94,29 @@ mixin _$PlayerRegisterController on _PlayerRegisterControllerBase, Store {
     });
   }
 
+  final _$loadingAtom = Atom(name: '_PlayerRegisterControllerBase.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
+  final _$savePlayerAsyncAction =
+      AsyncAction('_PlayerRegisterControllerBase.savePlayer');
+
+  @override
+  Future<bool> savePlayer() {
+    return _$savePlayerAsyncAction.run(() => super.savePlayer());
+  }
+
   final _$_PlayerRegisterControllerBaseActionController =
       ActionController(name: '_PlayerRegisterControllerBase');
 
@@ -194,7 +217,8 @@ name: ${name},
 image: ${image},
 over: ${over},
 position: ${position},
-datenasc: ${datenasc}
+datenasc: ${datenasc},
+loading: ${loading}
     ''';
   }
 }

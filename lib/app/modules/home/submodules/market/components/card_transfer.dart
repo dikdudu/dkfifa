@@ -134,7 +134,7 @@ class CardTransfer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Detalhes'.toUpperCase(),
+                    'Entrar na briga'.toUpperCase(),
                     style: TextStyle(
                       color: Colors.green,
                       fontWeight: FontWeight.w700,

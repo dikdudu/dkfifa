@@ -13,8 +13,7 @@ class _PlayerPageState extends State<PlayerPage> {
 
   @override
   initState() {
-    controller.getPlayersTeam(controller.user.team);
-
+    controller.getPlayersTeam(controller.team.id);
     super.initState();
   }
 

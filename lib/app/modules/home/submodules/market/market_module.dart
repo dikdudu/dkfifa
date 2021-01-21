@@ -1,3 +1,5 @@
+import 'package:cadu_fifa/app/shared/players/player_repository.dart';
+
 import 'market_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -8,6 +10,7 @@ class MarketModule extends ChildModule {
   @override
   List<Bind> get binds => [
         $MarketController,
+        Bind((i) => PlayerRepository()),
       ];
 
   @override
