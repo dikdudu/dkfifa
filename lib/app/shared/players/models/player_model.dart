@@ -8,6 +8,7 @@ class PlayerModel {
   String image;
   String position;
   String datenasc;
+  int currentPrice;
 
   PlayerModel({this.id, this.name, this.over, this.team, this.image});
 
@@ -19,5 +20,6 @@ class PlayerModel {
     image = document.data()['image'];
     position = document.data()['position'];
     datenasc = document.data()['datenasc'];
+    currentPrice = document.data()['price'];
   }
 }

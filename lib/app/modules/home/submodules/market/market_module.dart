@@ -5,12 +5,14 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'market_page.dart';
 import 'pages/second_page.dart';
+import 'repositories/market_repository.dart';
 
 class MarketModule extends ChildModule {
   @override
   List<Bind> get binds => [
         $MarketController,
         Bind((i) => PlayerRepository()),
+        Bind((i) => MarketRepository()),
       ];
 
   @override

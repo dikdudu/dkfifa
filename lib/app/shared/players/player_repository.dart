@@ -6,6 +6,7 @@ class PlayerRepository {
     final QuerySnapshot snapPlayers =
         await FirebaseFirestore.instance.collection("players").get();
     List<PlayerModel> players = [];
+
     for (DocumentSnapshot document in snapPlayers.docs) {
       final player = PlayerModel.fromDocument(document);
       players.add(player);
@@ -31,5 +32,14 @@ class PlayerRepository {
     }
 
     return newPlayersTeam;
+  }
+
+  Future catchTeamPlayer(String idTeam) async {
+    final DocumentSnapshot snapTeamPlayer =
+        await FirebaseFirestore.instance.collection("teams").doc(idTeam).get();
+
+    String name = snapTeamPlayer.data()['name'];
+
+    return name;
   }
 }

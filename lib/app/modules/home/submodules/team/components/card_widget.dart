@@ -1,5 +1,7 @@
 import 'package:cadu_fifa/app/modules/home/submodules/team/team_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class CardWidget extends StatefulWidget {
@@ -8,7 +10,7 @@ class CardWidget extends StatefulWidget {
 }
 
 class _CardWidgetState extends State<CardWidget> {
-  TeamController controller = TeamController();
+  TeamController controller = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,7 @@ class _CardWidgetState extends State<CardWidget> {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            'CK\$ ${controller.team.patrimonio.toString()}',
+                            'DK\$ ${formatEditUpdate(controller.team.patrimonio.toString())}',
                             style: TextStyle(fontSize: 25, color: Colors.white),
                           ),
                         ],
@@ -80,5 +82,14 @@ class _CardWidgetState extends State<CardWidget> {
         ],
       ),
     );
+  }
+
+  String formatEditUpdate(String newValue) {
+    double value = double.parse(newValue);
+    final money = new NumberFormat("###,###,###", "en_us");
+
+    String newText = money.format(value);
+
+    return newText;
   }
 }
