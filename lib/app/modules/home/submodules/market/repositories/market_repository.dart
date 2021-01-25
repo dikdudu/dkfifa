@@ -29,7 +29,7 @@ class MarketRepository {
     await attPatrimonioTeam(valorSub, newTeam);
 
     int valorAdd = await addPatrimonioTeam(team, price);
-    await attPatrimonioTeam(valorAdd, newTeam);
+    await attPatrimonioTeam(valorAdd, team);
 
     await upPlayer(idPlayer, newTeam, price, status);
 
