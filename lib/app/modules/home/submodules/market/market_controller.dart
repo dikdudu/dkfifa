@@ -114,10 +114,10 @@ abstract class _MarketControllerBase with Store {
         repositoryMarket.transferPlayerDisp(
           idPlayer,
           currentTeam,
-          transferPrice,
+          currentPrice,
           status,
           controllerTeam.team.id,
-          currentPrice,
+          transferPrice,
         );
       }
     }

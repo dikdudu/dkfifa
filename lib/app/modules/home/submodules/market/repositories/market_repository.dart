@@ -25,7 +25,7 @@ class MarketRepository {
     String newTeam,
     int newPrice,
   ) async {
-    int valorSub = await subPatrimonioTeam(newTeam, price);
+    int valorSub = await subPatrimonioTeam(newTeam, newPrice);
     await attPatrimonioTeam(valorSub, newTeam);
 
     int valorAdd = await addPatrimonioTeam(team, price);
@@ -33,7 +33,7 @@ class MarketRepository {
 
     await upPlayer(idPlayer, newTeam, price, status);
 
-    await db.collection('disputas').add({
+    await db.collection('disputas').doc(idPlayer).set({
       'player': idPlayer,
       'times': [
         newTeam,
