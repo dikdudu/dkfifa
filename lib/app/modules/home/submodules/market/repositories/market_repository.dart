@@ -1,3 +1,6 @@
+import 'package:cadu_fifa/app/modules/home/submodules/market/models/disputa_model.dart';
+import 'package:cadu_fifa/app/modules/home/submodules/market/models/player_market_model.dart';
+import 'package:cadu_fifa/app/modules/home/submodules/market/models/team_mark_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MarketRepository {
@@ -35,12 +38,12 @@ class MarketRepository {
 
     await db.collection('disputas').doc(idPlayer).set({
       'player': idPlayer,
-      'times': [
+      'teams': [
         newTeam,
         team,
       ],
       'price': price,
-      'time': team,
+      'team': team,
       'open': true,
     });
   }
@@ -83,5 +86,31 @@ class MarketRepository {
       'price': price,
       'status': status,
     });
+  }
+
+  //Buscar Disputas
+  Future catchDisputas() async {
+    QuerySnapshot snapDisp = await db.collection('disputas').get();
+    List<DisputaModel> disputas = [];
+
+    for (DocumentSnapshot document in snapDisp.docs) {
+      final disputa = DisputaModel.fromDocument(document);
+      disputas.add(disputa);
+    }
+
+    return disputas;
+  }
+
+  Future catchTeamDisp(String team) async {
+    DocumentSnapshot document = await db.collection('teams').doc(team).get();
+
+    return TeamMarkModel.fromDocument(document);
+  }
+
+  Future catchPlayerDisp(String player) async {
+    DocumentSnapshot document =
+        await db.collection('players').doc(player).get();
+
+    return PlayerMarketModel.fromDocment(document);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cadu_fifa/app/modules/home/submodules/market/components/search_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'components/card_transfer.dart';
 import 'market_controller.dart';
@@ -18,29 +19,32 @@ class _MarketPageState extends ModularState<MarketPage, MarketController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                child: Column(
-                  children: [
-                    Text('Disputas do Momento'),
-                    CardTransfer(),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          Expanded(
+              child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10),
+                Text('Mercado'),
+                Observer(builder: (context) {
+                  if (controller.finalLista.isEmpty) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (controller.finalLista == null) {
+                    return Text('Nenhum Leilão ocorrendo no momento');
+                  } else {
+                    return CardTransfer();
+                  }
+                })
+              ],
+            ),
+          )),
+        ],
       ),
-      floatingActionButton: RaisedButton(
-        color: Colors.blue,
-        child: Text(
-          'Buscar Jogador',
-          style: TextStyle(color: Colors.white),
-        ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.purple,
+        child: Icon(Icons.add),
         onPressed: () {
           showDialog(context: context, builder: (_) => SearchDialog());
           controller.filteredPlayers;

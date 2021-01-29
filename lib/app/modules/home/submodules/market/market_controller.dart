@@ -1,3 +1,5 @@
+import 'package:cadu_fifa/app/modules/home/submodules/market/models/disputa_final_model.dart';
+import 'package:cadu_fifa/app/modules/home/submodules/market/models/player_market_model.dart';
 import 'package:cadu_fifa/app/modules/home/submodules/market/repositories/market_repository.dart';
 import 'package:cadu_fifa/app/modules/home/submodules/market/utils/filter_price_player.dart';
 import 'package:cadu_fifa/app/modules/home/submodules/team/team_controller.dart';
@@ -5,6 +7,9 @@ import 'package:cadu_fifa/app/shared/players/models/player_model.dart';
 import 'package:cadu_fifa/app/shared/players/player_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'models/disputa_model.dart';
+import 'models/team_mark_model.dart';
 
 part 'market_controller.g.dart';
 
@@ -15,6 +20,12 @@ abstract class _MarketControllerBase with Store {
   PlayerRepository repositoryPlayer = Modular.get();
   MarketRepository repositoryMarket = Modular.get();
   TeamController controllerTeam = TeamController();
+
+  _MarketControllerBase() {
+    autorun((_) {
+      getDisp();
+    });
+  }
 
   //PESQUISA DE JOGADORES
   @observable
@@ -120,6 +131,38 @@ abstract class _MarketControllerBase with Store {
           transferPrice,
         );
       }
+    }
+  }
+
+  //Mostrar card tela inicial do Mercado
+  @observable
+  ObservableList<DisputaFinalModel> finalLista = ObservableList();
+
+  @action
+  Future getDisp() async {
+    List<DisputaModel> disputas = await repositoryMarket.catchDisputas();
+    for (DisputaModel disputa in disputas) {
+      DisputaFinalModel lista = DisputaFinalModel();
+      PlayerMarketModel playerDisp =
+          await repositoryMarket.catchPlayerDisp(disputa.player);
+      TeamMarkModel firstTeam =
+          await repositoryMarket.catchTeamDisp(disputa.teams[0]);
+      TeamMarkModel secondTeam =
+          await repositoryMarket.catchTeamDisp(disputa.teams[1]);
+
+      lista.valor = disputa.price;
+      lista.namePlayer = playerDisp.name;
+      lista.imagePlayer = playerDisp.image;
+      lista.overPlayer = playerDisp.over;
+      lista.positionPlayer = playerDisp.position;
+
+      lista.fistTeamImage = firstTeam.image;
+      lista.fistTeamName = firstTeam.name;
+
+      lista.secondTeamImage = secondTeam.image;
+      lista.secondTeamName = secondTeam.name;
+
+      finalLista.add(lista);
     }
   }
 }

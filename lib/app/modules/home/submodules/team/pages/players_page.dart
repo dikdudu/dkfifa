@@ -39,7 +39,7 @@ class _PlayerPageState extends State<PlayerPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'ELECO',
+                              'ELENCO',
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.w900,

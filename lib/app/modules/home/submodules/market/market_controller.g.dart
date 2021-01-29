@@ -118,6 +118,21 @@ mixin _$MarketController on _MarketControllerBase, Store {
     });
   }
 
+  final _$finalListaAtom = Atom(name: '_MarketControllerBase.finalLista');
+
+  @override
+  ObservableList<DisputaFinalModel> get finalLista {
+    _$finalListaAtom.reportRead();
+    return super.finalLista;
+  }
+
+  @override
+  set finalLista(ObservableList<DisputaFinalModel> value) {
+    _$finalListaAtom.reportWrite(value, super.finalLista, () {
+      super.finalLista = value;
+    });
+  }
+
   final _$transferPlayerAsyncAction =
       AsyncAction('_MarketControllerBase.transferPlayer');
 
@@ -126,6 +141,13 @@ mixin _$MarketController on _MarketControllerBase, Store {
       String idPlayer, String currentTeam, int over, int currentPrice) {
     return _$transferPlayerAsyncAction.run(
         () => super.transferPlayer(idPlayer, currentTeam, over, currentPrice));
+  }
+
+  final _$getDispAsyncAction = AsyncAction('_MarketControllerBase.getDisp');
+
+  @override
+  Future<dynamic> getDisp() {
+    return _$getDispAsyncAction.run(() => super.getDisp());
   }
 
   final _$_MarketControllerBaseActionController =
@@ -184,6 +206,7 @@ teamName: ${teamName},
 transferPrice: ${transferPrice},
 inicialPricePlayer: ${inicialPricePlayer},
 error: ${error},
+finalLista: ${finalLista},
 checkPricePlayer: ${checkPricePlayer}
     ''';
   }
