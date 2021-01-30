@@ -34,7 +34,7 @@ class MarketRepository {
     int valorAdd = await addPatrimonioTeam(team, price);
     await attPatrimonioTeam(valorAdd, team);
 
-    await upPlayer(idPlayer, newTeam, price, status);
+    await upPlayer(idPlayer, newTeam, newPrice, status);
 
     await db.collection('disputas').doc(idPlayer).set({
       'player': idPlayer,
@@ -42,7 +42,7 @@ class MarketRepository {
         team,
         newTeam,
       ],
-      'price': price,
+      'price': newPrice,
       'team': team,
       'open': true,
     });
