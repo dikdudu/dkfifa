@@ -39,8 +39,8 @@ class MarketRepository {
     await db.collection('disputas').doc(idPlayer).set({
       'player': idPlayer,
       'teams': [
-        newTeam,
         team,
+        newTeam,
       ],
       'price': price,
       'team': team,

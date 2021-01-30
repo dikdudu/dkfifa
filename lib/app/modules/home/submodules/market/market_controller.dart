@@ -136,11 +136,17 @@ abstract class _MarketControllerBase with Store {
 
   //Mostrar card tela inicial do Mercado
   @observable
+  bool loading = false;
+
+  @observable
   ObservableList<DisputaFinalModel> finalLista = ObservableList();
 
   @action
   Future getDisp() async {
+    loading = true;
+
     List<DisputaModel> disputas = await repositoryMarket.catchDisputas();
+
     for (DisputaModel disputa in disputas) {
       DisputaFinalModel lista = DisputaFinalModel();
       PlayerMarketModel playerDisp =
@@ -163,6 +169,8 @@ abstract class _MarketControllerBase with Store {
       lista.secondTeamName = secondTeam.name;
 
       finalLista.add(lista);
+
+      loading = false;
     }
   }
 }

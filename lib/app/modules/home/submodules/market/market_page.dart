@@ -29,9 +29,9 @@ class _MarketPageState extends ModularState<MarketPage, MarketController> {
                 SizedBox(height: 10),
                 Text('Mercado'),
                 Observer(builder: (context) {
-                  if (controller.finalLista.isEmpty) {
+                  if (controller.loading) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (controller.finalLista == null) {
+                  } else if (controller.finalLista.isEmpty) {
                     return Text('Nenhum Leilão ocorrendo no momento');
                   } else {
                     return CardTransfer();

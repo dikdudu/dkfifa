@@ -118,6 +118,21 @@ mixin _$MarketController on _MarketControllerBase, Store {
     });
   }
 
+  final _$loadingAtom = Atom(name: '_MarketControllerBase.loading');
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
   final _$finalListaAtom = Atom(name: '_MarketControllerBase.finalLista');
 
   @override
@@ -206,6 +221,7 @@ teamName: ${teamName},
 transferPrice: ${transferPrice},
 inicialPricePlayer: ${inicialPricePlayer},
 error: ${error},
+loading: ${loading},
 finalLista: ${finalLista},
 checkPricePlayer: ${checkPricePlayer}
     ''';

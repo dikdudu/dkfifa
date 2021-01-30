@@ -38,7 +38,7 @@ class _CardTransferState extends State<CardTransfer> {
                           children: [
                             ClipOval(
                               child: Image.network(
-                                'https://cdn.futbin.com/content/fifa21/img/clubs/73.png',
+                                controller.finalLista[index].fistTeamImage,
                                 fit: BoxFit.cover,
                                 height: 40,
                                 width: 40,
@@ -81,7 +81,7 @@ class _CardTransferState extends State<CardTransfer> {
                           children: [
                             ClipOval(
                               child: Image.network(
-                                'https://cdn.futbin.com/content/fifa21/img/clubs/241.png',
+                                controller.finalLista[index].secondTeamImage,
                                 fit: BoxFit.cover,
                                 height: 40,
                                 width: 40,

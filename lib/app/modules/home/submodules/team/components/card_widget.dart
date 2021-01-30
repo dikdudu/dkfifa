@@ -38,7 +38,6 @@ class _CardWidgetState extends State<CardWidget> {
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 10),
                           Row(
                             children: [
                               Text(
@@ -52,9 +51,15 @@ class _CardWidgetState extends State<CardWidget> {
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
+                              SizedBox(width: 50),
+                              IconButton(
+                                iconSize: 35,
+                                color: Colors.white,
+                                icon: Icon(Icons.refresh),
+                                onPressed: controller.getUser,
+                              ),
                             ],
                           ),
-                          SizedBox(height: 10),
                           Text(
                             "Nome da Equipe:",
                             style: TextStyle(fontSize: 18, color: Colors.white),
