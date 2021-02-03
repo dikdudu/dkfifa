@@ -27,16 +27,27 @@ class _MarketPageState extends ModularState<MarketPage, MarketController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 10),
-                Text('Mercado'),
-                Observer(builder: (context) {
-                  if (controller.loading) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (controller.finalLista.isEmpty) {
-                    return Text('Nenhum Leilão ocorrendo no momento');
-                  } else {
-                    return CardTransfer();
-                  }
-                })
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Mercado'),
+                    IconButton(
+                        icon: Icon(Icons.refresh),
+                        onPressed: controller.reloadList),
+                  ],
+                ),
+                Observer(
+                  builder: (_) {
+                    if (controller.loading) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (controller.finalLista.isEmpty ||
+                        controller.finalLista == null) {
+                      return Text('Nenhum Leilão ocorrendo no momento');
+                    } else {
+                      return CardTransfer();
+                    }
+                  },
+                )
               ],
             ),
           )),

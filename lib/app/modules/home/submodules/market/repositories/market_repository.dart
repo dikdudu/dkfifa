@@ -89,6 +89,7 @@ class MarketRepository {
   }
 
   //Buscar Disputas
+
   Future catchDisputas() async {
     QuerySnapshot snapDisp = await db.collection('disputas').get();
     List<DisputaModel> disputas = [];

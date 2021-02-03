@@ -27,6 +27,10 @@ abstract class _MarketControllerBase with Store {
     });
   }
 
+  Future<void> reloadList() async {
+    await getDisp();
+  }
+
   //PESQUISA DE JOGADORES
   @observable
   List<PlayerModel> allPlayers = [];
@@ -138,7 +142,6 @@ abstract class _MarketControllerBase with Store {
   @observable
   bool loading = false;
 
-  @observable
   ObservableList<DisputaFinalModel> finalLista = ObservableList();
 
   @action
@@ -147,30 +150,34 @@ abstract class _MarketControllerBase with Store {
 
     List<DisputaModel> disputas = await repositoryMarket.catchDisputas();
 
-    for (DisputaModel disputa in disputas) {
-      DisputaFinalModel lista = DisputaFinalModel();
-      PlayerMarketModel playerDisp =
-          await repositoryMarket.catchPlayerDisp(disputa.player);
-      TeamMarkModel firstTeam =
-          await repositoryMarket.catchTeamDisp(disputa.teams[0]);
-      TeamMarkModel secondTeam =
-          await repositoryMarket.catchTeamDisp(disputa.teams[1]);
-
-      lista.valor = disputa.price;
-      lista.namePlayer = playerDisp.name;
-      lista.imagePlayer = playerDisp.image;
-      lista.overPlayer = playerDisp.over;
-      lista.positionPlayer = playerDisp.position;
-
-      lista.fistTeamImage = firstTeam.image;
-      lista.fistTeamName = firstTeam.name;
-
-      lista.secondTeamImage = secondTeam.image;
-      lista.secondTeamName = secondTeam.name;
-
-      finalLista.add(lista);
-
+    if (disputas.isEmpty) {
       loading = false;
+    } else {
+      for (DisputaModel disputa in disputas) {
+        DisputaFinalModel lista = DisputaFinalModel();
+        PlayerMarketModel playerDisp =
+            await repositoryMarket.catchPlayerDisp(disputa.player);
+        TeamMarkModel firstTeam =
+            await repositoryMarket.catchTeamDisp(disputa.teams[0]);
+        TeamMarkModel secondTeam =
+            await repositoryMarket.catchTeamDisp(disputa.teams[1]);
+
+        lista.valor = disputa.price;
+        lista.namePlayer = playerDisp.name;
+        lista.imagePlayer = playerDisp.image;
+        lista.overPlayer = playerDisp.over;
+        lista.positionPlayer = playerDisp.position;
+
+        lista.fistTeamImage = firstTeam.image;
+        lista.fistTeamName = firstTeam.name;
+
+        lista.secondTeamImage = secondTeam.image;
+        lista.secondTeamName = secondTeam.name;
+
+        finalLista.add(lista);
+
+        loading = false;
+      }
     }
   }
 }

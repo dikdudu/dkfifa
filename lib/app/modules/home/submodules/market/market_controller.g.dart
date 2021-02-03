@@ -133,21 +133,6 @@ mixin _$MarketController on _MarketControllerBase, Store {
     });
   }
 
-  final _$finalListaAtom = Atom(name: '_MarketControllerBase.finalLista');
-
-  @override
-  ObservableList<DisputaFinalModel> get finalLista {
-    _$finalListaAtom.reportRead();
-    return super.finalLista;
-  }
-
-  @override
-  set finalLista(ObservableList<DisputaFinalModel> value) {
-    _$finalListaAtom.reportWrite(value, super.finalLista, () {
-      super.finalLista = value;
-    });
-  }
-
   final _$transferPlayerAsyncAction =
       AsyncAction('_MarketControllerBase.transferPlayer');
 
@@ -222,7 +207,6 @@ transferPrice: ${transferPrice},
 inicialPricePlayer: ${inicialPricePlayer},
 error: ${error},
 loading: ${loading},
-finalLista: ${finalLista},
 checkPricePlayer: ${checkPricePlayer}
     ''';
   }

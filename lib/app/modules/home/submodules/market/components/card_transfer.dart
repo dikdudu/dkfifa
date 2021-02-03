@@ -1,6 +1,7 @@
 import 'package:cadu_fifa/app/modules/home/submodules/market/market_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
 
 class CardTransfer extends StatefulWidget {
   @override
@@ -151,7 +152,7 @@ class _CardTransferState extends State<CardTransfer> {
                               ),
                             ),
                             Text(
-                              'DK\$ ${controller.finalLista[index].valor}',
+                              'DK\$ ${formatEditUpdate(controller.finalLista[index].valor.toString())}',
                               style: TextStyle(
                                   color: Colors.purple,
                                   fontWeight: FontWeight.w700,
@@ -199,5 +200,14 @@ class _CardTransferState extends State<CardTransfer> {
         controller: ScrollController(keepScrollOffset: false),
       );
     });
+  }
+
+  String formatEditUpdate(String newValue) {
+    double value = double.parse(newValue);
+    final money = new NumberFormat("###,###,###", "en_us");
+
+    String newText = money.format(value);
+
+    return newText;
   }
 }
