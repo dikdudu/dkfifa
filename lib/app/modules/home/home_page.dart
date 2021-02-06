@@ -49,7 +49,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         animation: controller.pageViewController,
         builder: (context, snapshot) {
           return BottomNavigationBar(
-              currentIndex: controller.pageViewController?.page?.round() ?? 1,
+              currentIndex: controller.pageViewController?.page?.round() ?? 0,
               onTap: (index) {
                 controller.pageViewController.jumpToPage(index);
               },

@@ -27,10 +27,10 @@ abstract class _PlayerRegisterControllerBase with Store {
   String datenasc;
 
   @action
-  changePlayerName(String name) => this.name = name;
+  changePlayerName(String name) => this.name = name.trim();
 
   @action
-  changePlayerImage(String url) => this.image = url;
+  changePlayerImage(String url) => this.image = url.trim();
 
   @action
   changePlayerOver(String over) => this.over = int.parse(over);
