@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'components/card_news.dart';
 import 'news_controller.dart';
 
 class NewsPage extends StatefulWidget {
@@ -21,11 +20,15 @@ class _NewsPageState extends ModularState<NewsPage, NewsController> {
         padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
         child: Column(
           children: [
+            // CardNews(),
             Center(
-              child: Container(
-                child: CardNews(),
+              child: Text(
+                'Noticiais em breve!',
+                style: TextStyle(
+                  fontSize: 22,
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

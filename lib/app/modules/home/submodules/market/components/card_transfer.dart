@@ -174,12 +174,15 @@ class _CardTransferState extends State<CardTransfer> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Entrar na briga'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
+                        FlatButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Entrar na briga'.toUpperCase(),
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                         Icon(

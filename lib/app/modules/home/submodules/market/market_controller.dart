@@ -24,6 +24,7 @@ abstract class _MarketControllerBase with Store {
   _MarketControllerBase() {
     autorun((_) {
       getDisp();
+      getPlayers();
     });
   }
 
@@ -55,7 +56,6 @@ abstract class _MarketControllerBase with Store {
           player.name.toLowerCase().contains(search.toLowerCase())));
     }
 
-    getPlayers();
     return filteredPlayers;
   }
 
@@ -125,7 +125,6 @@ abstract class _MarketControllerBase with Store {
             'Sua oferta tem que ser maior que: ${currentPrice.toString()}');
       } else {
         String status = 'em diputa';
-        changeError('Entrou no Leilao');
         repositoryMarket.transferPlayerDisp(
           idPlayer,
           currentTeam,
@@ -134,6 +133,7 @@ abstract class _MarketControllerBase with Store {
           controllerTeam.team.id,
           transferPrice,
         );
+        changeError('Entrou no Leilao');
       }
     }
   }
