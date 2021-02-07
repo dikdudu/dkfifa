@@ -5,6 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'currency_format.dart';
+import 'dialog_success.dart';
 
 class CustomDialog extends StatefulWidget {
   final String namePlayer, imagePlayer, team, idPlayer;
@@ -112,9 +113,13 @@ class _CustomDialogState extends State<CustomDialog> {
                       onPressed: () {
                         controller.transferPlayer(widget.idPlayer, widget.team,
                             widget.over, widget.currentPrice);
+
+                        Navigator.of(context).pop();
+                        showDialog(
+                            context: context, builder: (_) => DialogSuccess());
                       },
                       child: Text('Fazer Proposta'),
-                    ),
+                    )
                   ],
                 ),
               ),

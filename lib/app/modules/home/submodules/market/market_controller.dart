@@ -75,7 +75,7 @@ abstract class _MarketControllerBase with Store {
 
   //TRANSFERENCIA DE JOGADOR SEM CLUB
   @observable
-  int transferPrice;
+  int transferPrice = 0;
 
   @observable
   int inicialPricePlayer;
@@ -90,16 +90,15 @@ abstract class _MarketControllerBase with Store {
   @observable
   String error;
 
+  @observable
+  bool success = false;
+
   @action
   changeError(String value) => this.error = value;
 
   @action
-  Future transferPlayer(
-    String idPlayer,
-    String currentTeam,
-    int over,
-    int currentPrice,
-  ) async {
+  Future<void> transferPlayer(
+      String idPlayer, String currentTeam, int over, int currentPrice) async {
     inicialPricePlayer = filterPricePlayer(over);
 
     if (!checkPricePlayer && currentPrice == null) {
@@ -109,7 +108,7 @@ abstract class _MarketControllerBase with Store {
       changeError('Jogador nao pode ser contratado');
     } else if (currentPrice == null && currentTeam == null) {
       currentPrice = transferPrice;
-      changeError('Agora sim!');
+
       currentTeam = controllerTeam.team.id;
       String status = 'negociando';
 
@@ -119,6 +118,9 @@ abstract class _MarketControllerBase with Store {
         transferPrice,
         status,
       );
+      changeError('Agora sim!');
+      getPlayers();
+      success = true;
     } else {
       if (transferPrice <= currentPrice) {
         changeError(
@@ -134,6 +136,8 @@ abstract class _MarketControllerBase with Store {
           transferPrice,
         );
         changeError('Entrou no Leilao');
+        getPlayers();
+        success = true;
       }
     }
   }
