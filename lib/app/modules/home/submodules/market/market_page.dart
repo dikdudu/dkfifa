@@ -23,32 +23,52 @@ class _MarketPageState extends ModularState<MarketPage, MarketController> {
         children: [
           Expanded(
               child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Mercado'),
-                    IconButton(
-                        icon: Icon(Icons.refresh),
-                        onPressed: controller.reloadList),
-                  ],
-                ),
-                Observer(
-                  builder: (_) {
-                    if (controller.loading) {
-                      return Center(child: CircularProgressIndicator());
-                    } else if (controller.finalLista.isEmpty ||
-                        controller.finalLista == null) {
-                      return Text('Nenhum Leilão ocorrendo no momento');
-                    } else {
-                      return CardTransfer();
-                    }
-                  },
-                )
-              ],
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'Mercado'.toUpperCase(),
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.refresh),
+                          onPressed: controller.reloadList),
+                    ],
+                  ),
+                  Observer(
+                    builder: (_) {
+                      if (controller.loading) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (controller.finalLista.isEmpty ||
+                          controller.finalLista == null) {
+                        return Center(
+                            child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 100,
+                            ),
+                            Text(
+                              'Nenhum Leilão ocorrendo no momento...',
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ));
+                      } else {
+                        return CardTransfer();
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           )),
         ],

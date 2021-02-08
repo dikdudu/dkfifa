@@ -50,10 +50,14 @@ class _DialogSuccessState extends State<DialogSuccess> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Observer(builder: (context) {
-                return Text(
-                  controller.error,
-                  style: TextStyle(fontSize: 25),
-                );
+                return controller.loadingTransfer
+                    ? Center(child: CircularProgressIndicator())
+                    : Text(
+                        controller.error,
+                        style: controller.success
+                            ? TextStyle(fontSize: 22, color: Colors.green)
+                            : TextStyle(fontSize: 22, color: Colors.red),
+                      );
               }),
               SizedBox(height: 24),
               Align(
@@ -65,7 +69,7 @@ class _DialogSuccessState extends State<DialogSuccess> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text('OK'),
+                      child: Text('OK!'),
                     ),
                   ],
                 ),
@@ -74,18 +78,30 @@ class _DialogSuccessState extends State<DialogSuccess> {
           ),
         ),
         Positioned(
-          top: 0,
-          left: 16,
-          right: 16,
-          child: CircleAvatar(
-            child: Icon(
-              Icons.verified,
-              size: 42,
-            ),
-            backgroundColor: Colors.white,
-            radius: 50,
-          ),
-        ),
+            top: 0,
+            left: 16,
+            right: 16,
+            child: Observer(builder: (context) {
+              return controller.success
+                  ? CircleAvatar(
+                      child: Icon(
+                        Icons.done_outline,
+                        color: Colors.green,
+                        size: 50,
+                      ),
+                      backgroundColor: Colors.white,
+                      radius: 50,
+                    )
+                  : CircleAvatar(
+                      child: Icon(
+                        Icons.block,
+                        color: Colors.red,
+                        size: 50,
+                      ),
+                      backgroundColor: Colors.white,
+                      radius: 50,
+                    );
+            })),
       ],
     );
   }

@@ -118,6 +118,37 @@ mixin _$MarketController on _MarketControllerBase, Store {
     });
   }
 
+  final _$loadingTransferAtom =
+      Atom(name: '_MarketControllerBase.loadingTransfer');
+
+  @override
+  bool get loadingTransfer {
+    _$loadingTransferAtom.reportRead();
+    return super.loadingTransfer;
+  }
+
+  @override
+  set loadingTransfer(bool value) {
+    _$loadingTransferAtom.reportWrite(value, super.loadingTransfer, () {
+      super.loadingTransfer = value;
+    });
+  }
+
+  final _$successAtom = Atom(name: '_MarketControllerBase.success');
+
+  @override
+  bool get success {
+    _$successAtom.reportRead();
+    return super.success;
+  }
+
+  @override
+  set success(bool value) {
+    _$successAtom.reportWrite(value, super.success, () {
+      super.success = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: '_MarketControllerBase.loading');
 
   @override
@@ -137,7 +168,7 @@ mixin _$MarketController on _MarketControllerBase, Store {
       AsyncAction('_MarketControllerBase.transferPlayer');
 
   @override
-  Future<dynamic> transferPlayer(
+  Future<void> transferPlayer(
       String idPlayer, String currentTeam, int over, int currentPrice) {
     return _$transferPlayerAsyncAction.run(
         () => super.transferPlayer(idPlayer, currentTeam, over, currentPrice));
@@ -206,6 +237,8 @@ teamName: ${teamName},
 transferPrice: ${transferPrice},
 inicialPricePlayer: ${inicialPricePlayer},
 error: ${error},
+loadingTransfer: ${loadingTransfer},
+success: ${success},
 loading: ${loading},
 checkPricePlayer: ${checkPricePlayer}
     ''';

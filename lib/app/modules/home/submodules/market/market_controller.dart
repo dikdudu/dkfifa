@@ -91,6 +91,9 @@ abstract class _MarketControllerBase with Store {
   String error;
 
   @observable
+  bool loadingTransfer = false;
+
+  @observable
   bool success = false;
 
   @action
@@ -102,42 +105,62 @@ abstract class _MarketControllerBase with Store {
     inicialPricePlayer = filterPricePlayer(over);
 
     if (!checkPricePlayer && currentPrice == null) {
+      success = false;
       changeError(
           'Valor abaixo do valor inicial do jogador: ${inicialPricePlayer.toString()}');
     } else if (inicialPricePlayer == 0) {
+      success = false;
       changeError('Jogador nao pode ser contratado');
     } else if (currentPrice == null && currentTeam == null) {
-      currentPrice = transferPrice;
+      if (controllerTeam.team.patrimonio >= transferPrice) {
+        success = true;
+        currentTeam = controllerTeam.team.id;
+        String status = 'negociando';
 
-      currentTeam = controllerTeam.team.id;
-      String status = 'negociando';
-
-      await repositoryMarket.transferPlayerFree(
-        idPlayer,
-        currentTeam,
-        transferPrice,
-        status,
-      );
-      changeError('Agora sim!');
-      getPlayers();
-      success = true;
+        loadingTransfer = true;
+        await repositoryMarket.transferPlayerFree(
+          idPlayer,
+          currentTeam,
+          transferPrice,
+          status,
+        );
+        changeError('Agora sim!');
+        getPlayers();
+        loadingTransfer = false;
+        transferPrice = 0;
+        await controllerTeam.getTeam(controllerTeam.team.id);
+      } else {
+        success = false;
+        changeError('Dinheiro insuficiente! Seu Liso');
+      }
     } else {
       if (transferPrice <= currentPrice) {
+        success = false;
         changeError(
             'Sua oferta tem que ser maior que: ${currentPrice.toString()}');
       } else {
-        String status = 'em diputa';
-        repositoryMarket.transferPlayerDisp(
-          idPlayer,
-          currentTeam,
-          currentPrice,
-          status,
-          controllerTeam.team.id,
-          transferPrice,
-        );
-        changeError('Entrou no Leilao');
-        getPlayers();
-        success = true;
+        if (controllerTeam.team.patrimonio >= transferPrice) {
+          success = true;
+          String status = 'em diputa';
+          loadingTransfer = true;
+          await repositoryMarket.transferPlayerDisp(
+            idPlayer,
+            currentTeam,
+            currentPrice,
+            status,
+            controllerTeam.team.id,
+            transferPrice,
+          );
+          changeError('Entrou no Leilao');
+          getPlayers();
+          getDisp();
+          loadingTransfer = false;
+          transferPrice = 0;
+          await controllerTeam.getTeam(controllerTeam.team.id);
+        } else {
+          success = false;
+          changeError('Dinheiro insuficiente para disputar! Seu Liso!');
+        }
       }
     }
   }
