@@ -22,11 +22,134 @@ class _NewsPageState extends ModularState<NewsPage, NewsController> {
           children: [
             // CardNews(),
             Center(
-              child: Text(
-                'Noticiais em breve!',
-                style: TextStyle(
-                  fontSize: 22,
-                ),
+              child: Table(
+                border: TableBorder.all(),
+                children: [
+                  TableRow(children: [
+                    Text(
+                      'Over'.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
+                    Text(
+                      'Valores'.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '77',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.green),
+                    ),
+                    Text(
+                      'DK\$ 50.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '78',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.green),
+                    ),
+                    Text(
+                      'DK\$ 60.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '79',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.green),
+                    ),
+                    Text(
+                      'DK\$ 70.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '80',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.green),
+                    ),
+                    Text(
+                      'DK\$ 90.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '81',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.blue),
+                    ),
+                    Text(
+                      'DK\$ 100.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '82',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.blue),
+                    ),
+                    Text(
+                      'DK\$ 160.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '83',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.blue),
+                    ),
+                    Text(
+                      'DK\$ 210.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '84',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.blue),
+                    ),
+                    Text(
+                      'DK\$ 270.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '85',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.blue),
+                    ),
+                    Text(
+                      'DK\$ 330.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                  TableRow(children: [
+                    Text(
+                      '86',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.red),
+                    ),
+                    Text(
+                      'DK\$ 500.000,00',
+                      textAlign: TextAlign.center,
+                    ),
+                  ]),
+                ],
               ),
             ),
           ],
