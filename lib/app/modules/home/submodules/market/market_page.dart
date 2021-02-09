@@ -78,7 +78,6 @@ class _MarketPageState extends ModularState<MarketPage, MarketController> {
         child: Icon(Icons.add),
         onPressed: () {
           showDialog(context: context, builder: (_) => SearchDialog());
-          controller.filteredPlayers;
         },
       ),
     );

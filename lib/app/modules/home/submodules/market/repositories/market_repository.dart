@@ -1,10 +1,19 @@
 import 'package:cadu_fifa/app/modules/home/submodules/market/models/disputa_model.dart';
 import 'package:cadu_fifa/app/modules/home/submodules/market/models/player_market_model.dart';
 import 'package:cadu_fifa/app/modules/home/submodules/market/models/team_mark_model.dart';
+import 'package:cadu_fifa/app/shared/players/models/player_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MarketRepository {
   FirebaseFirestore db = FirebaseFirestore.instance;
+
+  Stream<List<PlayerModel>> getPlayers() {
+    return db.collection('players').snapshots().map((query) {
+      return query.docs.map((doc) {
+        return PlayerModel.fromDocument(doc);
+      }).toList();
+    });
+  }
 
   Future transferPlayerFree(
     String idPlayer,

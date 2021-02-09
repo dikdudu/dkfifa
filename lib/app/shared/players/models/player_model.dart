@@ -9,17 +9,29 @@ class PlayerModel {
   String position;
   String datenasc;
   int currentPrice;
+  final DocumentReference reference;
 
-  PlayerModel({this.id, this.name, this.over, this.team, this.image});
+  PlayerModel(
+      {this.id,
+      this.name,
+      this.over,
+      this.team,
+      this.image,
+      this.reference,
+      this.currentPrice,
+      this.datenasc,
+      this.position});
 
-  PlayerModel.fromDocument(DocumentSnapshot document) {
-    id = document.id;
-    name = document.data()['name'];
-    over = document.data()['over'];
-    team = document.data()['team'];
-    image = document.data()['image'];
-    position = document.data()['position'];
-    datenasc = document.data()['datenasc'];
-    currentPrice = document.data()['price'];
+  factory PlayerModel.fromDocument(DocumentSnapshot document) {
+    return PlayerModel(
+      id: document.id,
+      name: document.data()['name'],
+      over: document.data()['over'],
+      team: document.data()['team'],
+      image: document.data()['image'],
+      position: document.data()['position'],
+      datenasc: document.data()['datenasc'],
+      currentPrice: document.data()['price'],
+    );
   }
 }

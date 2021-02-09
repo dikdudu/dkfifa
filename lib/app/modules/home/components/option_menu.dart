@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class OptionMenu extends StatelessWidget {
   @override
@@ -23,7 +22,8 @@ class OptionMenu extends StatelessWidget {
 void choiceAction(String choice) {
   switch (choice) {
     case 'Novo Jogador':
-      Modular.to.pushNamed('home/playerRegister');
+      // Modular.to.pushNamed('home/playerRegister');
+      return null;
       break;
     case 'Sair':
       //  Navigator.of(context).pushNamed('/players')

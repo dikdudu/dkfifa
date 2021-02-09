@@ -27,21 +27,6 @@ mixin _$MarketController on _MarketControllerBase, Store {
           name: '_MarketControllerBase.checkPricePlayer'))
       .value;
 
-  final _$allPlayersAtom = Atom(name: '_MarketControllerBase.allPlayers');
-
-  @override
-  List<PlayerModel> get allPlayers {
-    _$allPlayersAtom.reportRead();
-    return super.allPlayers;
-  }
-
-  @override
-  set allPlayers(List<PlayerModel> value) {
-    _$allPlayersAtom.reportWrite(value, super.allPlayers, () {
-      super.allPlayers = value;
-    });
-  }
-
   final _$searchAtom = Atom(name: '_MarketControllerBase.search');
 
   @override
@@ -54,6 +39,21 @@ mixin _$MarketController on _MarketControllerBase, Store {
   set search(String value) {
     _$searchAtom.reportWrite(value, super.search, () {
       super.search = value;
+    });
+  }
+
+  final _$playersListAtom = Atom(name: '_MarketControllerBase.playersList');
+
+  @override
+  ObservableStream<List<PlayerModel>> get playersList {
+    _$playersListAtom.reportRead();
+    return super.playersList;
+  }
+
+  @override
+  set playersList(ObservableStream<List<PlayerModel>> value) {
+    _$playersListAtom.reportWrite(value, super.playersList, () {
+      super.playersList = value;
     });
   }
 
@@ -168,10 +168,9 @@ mixin _$MarketController on _MarketControllerBase, Store {
       AsyncAction('_MarketControllerBase.transferPlayer');
 
   @override
-  Future<void> transferPlayer(
-      String idPlayer, String currentTeam, int over, int currentPrice) {
-    return _$transferPlayerAsyncAction.run(
-        () => super.transferPlayer(idPlayer, currentTeam, over, currentPrice));
+  Future<void> transferPlayer(String idPlayer, int over, int indexplayer) {
+    return _$transferPlayerAsyncAction
+        .run(() => super.transferPlayer(idPlayer, over, indexplayer));
   }
 
   final _$getDispAsyncAction = AsyncAction('_MarketControllerBase.getDisp');
@@ -190,6 +189,17 @@ mixin _$MarketController on _MarketControllerBase, Store {
         name: '_MarketControllerBase.setSearch');
     try {
       return super.setSearch(value);
+    } finally {
+      _$_MarketControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic getListPlayers() {
+    final _$actionInfo = _$_MarketControllerBaseActionController.startAction(
+        name: '_MarketControllerBase.getListPlayers');
+    try {
+      return super.getListPlayers();
     } finally {
       _$_MarketControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -231,8 +241,8 @@ mixin _$MarketController on _MarketControllerBase, Store {
   @override
   String toString() {
     return '''
-allPlayers: ${allPlayers},
 search: ${search},
+playersList: ${playersList},
 teamName: ${teamName},
 transferPrice: ${transferPrice},
 inicialPricePlayer: ${inicialPricePlayer},

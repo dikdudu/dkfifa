@@ -24,7 +24,7 @@ abstract class _MarketControllerBase with Store {
   _MarketControllerBase() {
     autorun((_) {
       getDisp();
-      getPlayers();
+      getListPlayers();
     });
   }
 
@@ -34,25 +34,26 @@ abstract class _MarketControllerBase with Store {
 
   //PESQUISA DE JOGADORES
   @observable
-  List<PlayerModel> allPlayers = [];
-
-  Future getPlayers() async {
-    allPlayers = await repositoryPlayer.catchAllPlayers();
-  }
-
-  @observable
   String search = '';
 
   @action
   void setSearch(String value) => this.search = value;
 
+  @observable
+  ObservableStream<List<PlayerModel>> playersList;
+
+  @action
+  getListPlayers() {
+    playersList = repositoryMarket.getPlayers().asObservable();
+  }
+
   List<PlayerModel> get filteredPlayers {
     final List<PlayerModel> filteredPlayers = [];
 
     if (search.isEmpty) {
-      filteredPlayers.addAll(allPlayers);
+      filteredPlayers.addAll(playersList.value);
     } else {
-      filteredPlayers.addAll(allPlayers.where((player) =>
+      filteredPlayers.addAll(playersList.value.where((player) =>
           player.name.toLowerCase().contains(search.toLowerCase())));
     }
 
@@ -66,11 +67,13 @@ abstract class _MarketControllerBase with Store {
   @action
   changeTeamName(String team) => this.teamName = team;
 
-  Future getTeam(String idTeam) async {
-    if (idTeam != null) {
-      teamName = await repositoryPlayer.catchTeamPlayer(idTeam);
+  Future getTeam(int idxPlayer) async {
+    int iplayer = idxPlayer;
+    if (filteredPlayers[iplayer].team != null) {
+      String tName =
+          await repositoryPlayer.catchTeamPlayer(filteredPlayers[iplayer].team);
+      changeTeamName(tName);
     }
-    changeTeamName(teamName);
   }
 
   //TRANSFERENCIA DE JOGADOR SEM CLUB
@@ -101,8 +104,11 @@ abstract class _MarketControllerBase with Store {
 
   @action
   Future<void> transferPlayer(
-      String idPlayer, String currentTeam, int over, int currentPrice) async {
+      String idPlayer, int over, int indexplayer) async {
     inicialPricePlayer = filterPricePlayer(over);
+
+    int currentPrice = filteredPlayers[indexplayer].currentPrice;
+    String currentTeam = filteredPlayers[indexplayer].team;
 
     if (!checkPricePlayer && currentPrice == null) {
       success = false;
@@ -125,7 +131,6 @@ abstract class _MarketControllerBase with Store {
           status,
         );
         changeError('Agora sim!');
-        getPlayers();
         loadingTransfer = false;
         transferPrice = 0;
         await controllerTeam.getTeam(controllerTeam.team.id);
@@ -152,7 +157,6 @@ abstract class _MarketControllerBase with Store {
             transferPrice,
           );
           changeError('Entrou no Leilao');
-          getPlayers();
           getDisp();
           loadingTransfer = false;
           transferPrice = 0;
