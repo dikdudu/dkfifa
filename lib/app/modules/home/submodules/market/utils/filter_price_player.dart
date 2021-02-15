@@ -28,14 +28,8 @@ filterPricePlayer(overPlayer) {
       return 60000;
       break;
     case 77:
-      return 50000;
-      break;
     case 76:
-      return 50000;
-      break;
     case 75:
-      return 50000;
-      break;
     case 74:
       return 50000;
       break;
