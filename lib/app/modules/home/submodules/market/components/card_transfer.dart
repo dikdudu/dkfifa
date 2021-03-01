@@ -37,7 +37,8 @@ class _CardTransferState extends State<CardTransfer> {
                       children: [
                         Column(
                           children: [
-                            ClipOval(
+                            CircleAvatar(
+                              backgroundColor: Colors.transparent,
                               child: Image.network(
                                 controller.finalLista[index].fistTeamImage,
                                 fit: BoxFit.cover,
@@ -80,7 +81,8 @@ class _CardTransferState extends State<CardTransfer> {
                         ),
                         Column(
                           children: [
-                            ClipOval(
+                            CircleAvatar(
+                              backgroundColor: Colors.transparent,
                               child: Image.network(
                                 controller.finalLista[index].secondTeamImage,
                                 fit: BoxFit.cover,
