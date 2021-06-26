@@ -61,7 +61,7 @@ class MarketRepository {
     String team,
     int price,
   ) async {
-    DocumentSnapshot snapshot = await db.collection('teams').doc(team).get();
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await db.collection('teams').doc(team).get();
     int valorAtual = snapshot.data()['patrimonio'];
     return (valorAtual - price);
   }
@@ -70,7 +70,7 @@ class MarketRepository {
     String team,
     int price,
   ) async {
-    DocumentSnapshot snapshot = await db.collection('teams').doc(team).get();
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await db.collection('teams').doc(team).get();
     int valorAtual = snapshot.data()['patrimonio'];
     return (valorAtual + price);
   }

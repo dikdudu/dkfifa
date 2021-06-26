@@ -34,8 +34,8 @@ class PlayerRepository {
     return newPlayersTeam;
   }
 
-  Future catchTeamPlayer(String idTeam) async {
-    final DocumentSnapshot snapTeamPlayer =
+  Future<String> catchTeamPlayer(String idTeam) async {
+    final snapTeamPlayer =
         await FirebaseFirestore.instance.collection("teams").doc(idTeam).get();
 
     String name = snapTeamPlayer.data()['name'];

@@ -101,7 +101,7 @@ class _SearchDialogState extends State<SearchDialog> {
                         ),
                       ),
                       SizedBox(width: 10),
-                      FlatButton(
+                      TextButton(
                         onPressed: () async {
                           await controller.getTeam(index);
                           showDialog(

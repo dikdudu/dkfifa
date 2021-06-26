@@ -13,7 +13,7 @@ class TeamModel {
     this.dono,
   });
 
-  TeamModel.fromDocument(DocumentSnapshot document) {
+  TeamModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> document) {
     id = document.id;
     name = document.data()['name'] as String;
     patrimonio = document.data()['patrimonio'];

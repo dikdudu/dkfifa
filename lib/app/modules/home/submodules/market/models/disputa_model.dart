@@ -9,7 +9,7 @@ class DisputaModel {
 
   DisputaModel({this.open, this.player, this.price, this.team, this.teams});
 
-  DisputaModel.fromDocument(DocumentSnapshot document) {
+  DisputaModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> document) {
     open = document.data()['open'];
     player = document.data()['player'];
     price = document.data()['price'];

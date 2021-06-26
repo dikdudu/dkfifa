@@ -6,7 +6,7 @@ class TeamMarkModel {
 
   TeamMarkModel({this.image, this.name});
 
-  TeamMarkModel.fromDocument(DocumentSnapshot document) {
+  TeamMarkModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> document) {
     image = document.data()['image'];
     name = document.data()['name'];
   }

@@ -105,13 +105,13 @@ class _CustomDialogState extends State<CustomDialog> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        FlatButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
                           child: Text('Cancelar'),
                         ),
-                        FlatButton(
+                        TextButton(
                           onPressed: () {
                             controller.transferPlayer(
                               widget.idPlayer,

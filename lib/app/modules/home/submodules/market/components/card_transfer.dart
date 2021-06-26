@@ -172,7 +172,7 @@ class _CardTransferState extends State<CardTransfer> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FlatButton(
+                      TextButton(
                         onPressed: () {},
                         child: Text(
                           'Entrar na briga'.toUpperCase(),

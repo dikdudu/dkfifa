@@ -9,7 +9,7 @@ class UserModel {
 
   UserModel({this.id, this.email, this.name, this.password, this.team});
 
-  UserModel.fromDocument(DocumentSnapshot document) {
+  UserModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> document) {
     id = document.id;
     name = document.data()['name'] as String;
     email = document.data()['email'] as String;

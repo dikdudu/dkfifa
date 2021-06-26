@@ -22,7 +22,7 @@ class PlayerModel {
       this.datenasc,
       this.position});
 
-  factory PlayerModel.fromDocument(DocumentSnapshot document) {
+  factory PlayerModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> document) {
     return PlayerModel(
       id: document.id,
       name: document.data()['name'],

@@ -8,7 +8,7 @@ class PlayerMarketModel {
 
   PlayerMarketModel({this.image, this.name, this.position, this.over});
 
-  PlayerMarketModel.fromDocment(DocumentSnapshot document) {
+  PlayerMarketModel.fromDocment(DocumentSnapshot<Map<String, dynamic>> document) {
     image = document.data()['image'];
     name = document.data()['name'];
     position = document.data()['position'];
