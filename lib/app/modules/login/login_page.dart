@@ -70,16 +70,23 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           ),
                           Align(
                             alignment: Alignment.centerRight,
-                            child: FlatButton(
-                              padding: EdgeInsets.zero,
+                            child: TextButton(
                               onPressed: () {},
-                              child: const Text('Esqueci minha senha'),
+                              child: const Text(
+                                'Esqueci minha senha',
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
                           ),
                           const SizedBox(height: 16),
                           SizedBox(
                             height: 50,
-                            child: RaisedButton(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Theme.of(context)
+                                    .primaryColor, // background
+                                onPrimary: Colors.white, // foreground
+                              ),
                               onPressed: () {
                                 if (formKey.currentState.validate()) {
                                   controller.signIn(
@@ -102,8 +109,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                   );
                                 }
                               },
-                              color: Theme.of(context).primaryColor,
-                              textColor: Colors.white,
                               child: const Text(
                                 'Entrar',
                                 style: TextStyle(fontSize: 18),

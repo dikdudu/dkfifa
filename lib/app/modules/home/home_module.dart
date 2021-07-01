@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'home_page.dart';
 import 'submodules/team/repositories/team_repository.dart';
 
-class HomeModule extends ChildModule {
+class HomeModule extends Module {
   @override
   List<Bind> get binds => [
         $HomeController,
@@ -14,10 +14,8 @@ class HomeModule extends ChildModule {
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
-        ModularRouter('/playerRegister', module: PlayerRegisterModule()),
+  List<ModularRoute> get routes => [
+        ChildRoute(Modular.initialRoute, child: (_, args) => HomePage()),
+        ModuleRoute('/playerRegister', module: PlayerRegisterModule()),
       ];
-
-  static Inject get to => Inject<HomeModule>.of();
 }

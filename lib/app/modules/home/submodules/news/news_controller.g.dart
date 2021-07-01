@@ -8,8 +8,8 @@ part of 'news_controller.dart';
 
 final $NewsController = BindInject(
   (i) => NewsController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

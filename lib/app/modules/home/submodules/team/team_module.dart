@@ -4,17 +4,15 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'team_page.dart';
 
-class TeamModule extends ChildModule {
+class TeamModule extends Module {
   @override
   List<Bind> get binds => [
         $TeamController,
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => TeamPage()),
-        ModularRouter('/players', child: (_, args) => PlayerPage()),
+  List<ModularRoute> get routes => [
+        ChildRoute(Modular.initialRoute, child: (_, args) => TeamPage()),
+        ChildRoute('/players', child: (_, args) => PlayerPage()),
       ];
-
-  static Inject get to => Inject<TeamModule>.of();
 }

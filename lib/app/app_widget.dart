@@ -6,7 +6,6 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      navigatorKey: Modular.navigatorKey,
       title: 'CADU FIFA',
       theme: ThemeData(
         primaryColor: Colors.purpleAccent[400],
@@ -17,7 +16,6 @@ class AppWidget extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
-      onGenerateRoute: Modular.generateRoute,
-    );
+    ).modular();
   }
 }

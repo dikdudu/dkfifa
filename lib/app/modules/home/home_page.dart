@@ -2,9 +2,6 @@ import 'package:cadu_fifa/app/modules/home/components/option_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'home_controller.dart';
-import 'submodules/market/market_module.dart';
-import 'submodules/news/news_module.dart';
-import 'submodules/team/team_module.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -39,11 +36,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       ),
       body: PageView(
         controller: controller.pageViewController,
-        children: [
-          RouterOutlet(module: TeamModule()),
-          RouterOutlet(module: NewsModule()),
-          RouterOutlet(module: MarketModule()),
-        ],
+        children: [],
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller.pageViewController,

@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'player_register_page.dart';
 import 'repositories/player_register_repository.dart';
 
-class PlayerRegisterModule extends ChildModule {
+class PlayerRegisterModule extends Module {
   @override
   List<Bind> get binds => [
         $PlayerRegisterController,
@@ -12,10 +12,8 @@ class PlayerRegisterModule extends ChildModule {
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute,
+  List<ModularRoute> get routes => [
+        ChildRoute(Modular.initialRoute,
             child: (_, args) => PlayerRegisterPage()),
       ];
-
-  static Inject get to => Inject<PlayerRegisterModule>.of();
 }

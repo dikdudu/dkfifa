@@ -8,8 +8,8 @@ part of 'player_register_controller.dart';
 
 final $PlayerRegisterController = BindInject(
   (i) => PlayerRegisterController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************

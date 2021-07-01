@@ -8,8 +8,8 @@ part of 'team_controller.dart';
 
 final $TeamController = BindInject(
   (i) => TeamController(),
-  singleton: true,
-  lazy: true,
+  isSingleton: true,
+  isLazy: true,
 );
 
 // **************************************************************************
