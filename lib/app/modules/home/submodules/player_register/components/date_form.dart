@@ -42,8 +42,7 @@ class _DateFormState extends State<DateForm> {
               : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}',
         ),
         SizedBox(width: 10),
-        FlatButton(
-          textColor: Theme.of(context).primaryColor,
+        TextButton(
           child: Text(
             'Selecione a Data',
             style: TextStyle(fontWeight: FontWeight.bold),

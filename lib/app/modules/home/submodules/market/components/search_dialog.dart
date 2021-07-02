@@ -40,7 +40,7 @@ class _SearchDialogState extends State<SearchDialog> {
             child: Observer(builder: (_) {
               if (controller.playersList.hasError) {
                 return Center(
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: controller.getListPlayers,
                     child: Text('ERROR'),
                   ),
